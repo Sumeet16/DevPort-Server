@@ -5,10 +5,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    profile_url: {
-        type: String,
-        required: true
-    },
+    // profile_url: {
+    //     type: String,
+    //     required: true
+    // },
     projects_info: [
         {
             projectTitle: {
