@@ -1,18 +1,25 @@
-// const express = require('express');
-// const router = express.Router();
-// const courseModel = require("../model/course.model");
+const express = require('express');
+const router = express.Router();
+const userModel = require("../model/user.model");
 
-// router.post('/updateCourse', async (req, res) => {
-//     const { updateCourseInfo, videos, dprice } = req.body;
+router.post('/updateUser', async (req, res) => {
+    const { userName, projectTitle, domain, createdAt } = req.body;
 
-//     try {
-//         const courses = await courseModel.findOneAndUpdate({_id: updateCourseInfo._id}, { $set: {"title": updateCourseInfo.title, "price": updateCourseInfo.price, "discount": updateCourseInfo.discount, "dprice": dprice, "description": updateCourseInfo.description, "courseImage": updateCourseInfo.courseImage, "videos": videos}}, {new: true} );
-//         return res.json({message: "Courses is updated! 🟢", course: courses})
-//     } catch (error) {
-//         return res
-//         .status(401)
-//         .json({ message: "Some error occurred while updating the course! 🔴" });
-//     }
-// })
+    try {
+        const user = await userModel.findOneAndUpdate({username: userName}, 
+            { $set: {"project_info": [
+                {
+                    projectTitle: projectTitle,
+                    domain: domain,  
+                    createdAt : createdAt
+                }
+            ]}}, {new: true} );
+        return res.json({message: "User is updated! 🟢", user: user})
+    } catch (error) {
+        return res
+        .status(401)
+        .json({ message: "Some error occurred while updating the user! 🔴" });
+    }
+})
 
-// module.exports = router
+module.exports = router
