@@ -5,15 +5,16 @@ const userModel = require("../model/user.model");
 router.post('/updateUser', async (req, res) => {
     const { userName, projectTitle, domain, createdAt } = req.body;
 
+    const date = new Date();
     try {
         const user = await userModel.findOneAndUpdate({username: userName}, 
-            { $set: {"project_info": [
+            { $push: {"projects_info": [
                 {
-                    projectTitle: projectTitle,
-                    domain: domain,  
-                    createdAt : createdAt
+                    "projectTitle": projectTitle,
+                    "domain": domain,  
+                    "createdAt" : date
                 }
-            ]}}, {new: true} );
+            ]}});
         return res.json({message: "User is updated! 🟢", user: user})
     } catch (error) {
         return res

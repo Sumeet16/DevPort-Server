@@ -23,6 +23,8 @@ dotenv.config({ path: "config.env" });
 // defining port
 const PORT = process.env.PORT || 3000;
 app.use(require("./router/addUser"));
+app.use(require("./router/getUser"));
+app.use(require("./router/updateUser"));
 
 // setting up an empty GET Route
 app.get('/', (req, res) => { res.json({ message: "You've come to the right place... it's a GET request!!" }) });
