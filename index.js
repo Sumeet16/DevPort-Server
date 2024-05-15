@@ -25,6 +25,7 @@ const PORT = process.env.PORT || 3000;
 app.use(require("./router/addUser"));
 app.use(require("./router/getUser"));
 app.use(require("./router/updateUser"));
+app.use(require("./router/importProject"));
 
 // setting up an empty GET Route
 app.get('/', (req, res) => { res.json({ message: "You've come to the right place... it's a GET request!!" }) });

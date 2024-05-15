@@ -3,7 +3,7 @@ const router = express.Router();
 const userModel = require("../model/user.model");
 
 router.post('/updateUser', async (req, res) => {
-    const { userName, projectTitle, domain, createdAt } = req.body;
+    const { userName, projectTitle, domain } = req.body;
 
     const date = new Date();
     try {
